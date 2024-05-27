@@ -5,4 +5,4 @@ numpy
 Pillow
 keras
 tf
-tensorflow rt
+tf rt
