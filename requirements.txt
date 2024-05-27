@@ -1,8 +1,7 @@
 Flask
 Werkzeug
-tensorflow
+tensorflow==2.15.0
 numpy
 Pillow
 keras
-tf
-tf rt
+tf==2.15.0
