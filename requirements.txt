@@ -5,5 +5,4 @@ numpy
 Pillow
 keras
 tf
-os
 tfrt
