@@ -63,4 +63,4 @@ def upload():
 
 if __name__ == '__main__':
     load_model_from_file()
-    app.run(debug=os.getenv('FLASK_DEBUG', 'False').lower() in ['true', '1'])
+    app.run(debug=False,host='0.0.0.0') #('''debug=os.getenv('FLASK_DEBUG', 'False').lower() in ['true', '1']''')
