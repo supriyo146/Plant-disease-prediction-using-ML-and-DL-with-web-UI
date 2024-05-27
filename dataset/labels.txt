@@ -1,0 +1,4 @@
+0 Healthy
+1 Early Blight
+2 Initial Stage
+3 Late Blight

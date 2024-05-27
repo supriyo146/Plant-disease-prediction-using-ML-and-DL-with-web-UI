@@ -1,0 +1,69 @@
+{% extends "import.html" %} 
+{% block content %}
+
+<!-- Custom Styles -->
+<style>
+    .page-container {
+        margin-top: 20px;
+    }
+    .image-section, .loader, #result {
+        margin-top: 20px;
+        text-align: center;
+    }
+    #imagePreview {
+        max-width: 100%;
+        height: auto;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+    .btn-custom {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+    .loader {
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<div class="container page-container">
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <h2>Plant Disease Detection using Machine Learning</h2>
+                <form id="upload-file" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" class="btn btn-success" id="imageUpload" accept=".png, .jpg, .jpeg">
+                </form>
+
+                <div class="image-section" style="display:none;">
+                    <img id="imagePreview" src="#" alt="Uploaded Image" />
+                    <button type="button" class="btn-custom" id="btn-predict">Predict!</button>
+                </div>
+
+                <div class="loader" style="display:none;"></div>
+
+                <h3 id="result"><span> </span></h3>
+            </center>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

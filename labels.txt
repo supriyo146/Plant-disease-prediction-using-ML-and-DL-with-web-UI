@@ -1,0 +1,8 @@
+0 pumpkin early blight
+1 pumpkin healthy
+2 pumpkin initial stage
+3 pumpkin late blight
+4 chilli early blight
+5 chilli healthy
+6 chilli initial stage
+7 chilli late blight
