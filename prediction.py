@@ -11,28 +11,38 @@ app = Flask(__name__)
 # Global variables for model and labels
 MODEL_PATH = 'model.h5'
 model = None
-labels = {0: 'pumpkin early blight',
-1: 'pumpkin healthy',
-2: 'pumpkin initial stage',
-3: 'pumpkin late blight',
-4: 'chilli early blight',
-5: 'chilli healthy',
-6: 'chilli initial stage',
-7: 'chilli late blight'}
+labels = {
+    0: 'pumpkin early blight',
+    1: 'pumpkin healthy',
+    2: 'pumpkin initial stage',
+    3: 'pumpkin late blight',
+    4: 'chilli early blight',
+    5: 'chilli healthy',
+    6: 'chilli initial stage',
+    7: 'chilli late blight'
+}
 
 def load_model_from_file():
     """Load the pre-trained model from file."""
     global model
-    model = load_model(MODEL_PATH)
-    print('Model loaded. Check http://127.0.0.1:5000/')
+    try:
+        model = load_model(MODEL_PATH)
+        print('Model loaded. Check http://127.0.0.1:5000/')
+    except Exception as e:
+        print(f"Error loading model: {str(e)}")
 
 def predict_image(image_path):
     """Predict the class of the image."""
-    img = load_img(image_path, target_size=(224, 224))
-    x = img_to_array(img) / 255.0
-    x = np.expand_dims(x, axis=0)
-    predictions = model.predict(x)[0]
-    return labels[np.argmax(predictions)]
+    try:
+        img = load_img(image_path, target_size=(224, 224))
+        x = img_to_array(img) / 255.0
+        x = np.expand_dims(x, axis=0)
+        predictions = model.predict(x)[0]
+        predicted_label = labels[np.argmax(predictions)]
+        print(f"Predicted label: {predicted_label}")  # Debugging
+        return predicted_label
+    except Exception as e:
+        return f"Error making prediction: {str(e)}"
 
 @app.route('/', methods=['GET'])
 def index():
@@ -63,4 +73,4 @@ def upload():
 
 if __name__ == '__main__':
     load_model_from_file()
-    app.run(debug=False,host='0.0.0.0')# (debug=os.getenv('FLASK_DEBUG', 'False').lower() in ['true', '1'])   
+    app.run(debug=False, host='0.0.0.0')
